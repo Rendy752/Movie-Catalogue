@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
 
 module.exports = {
   entry: {
@@ -29,12 +29,10 @@ module.exports = {
     ],
   },
   plugins: [
-    // create index.html based on src/templates/index.html
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
     }),
-    // copy public directory to dist
     new CopyWebpackPlugin({
       patterns: [
         {

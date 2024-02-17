@@ -94,7 +94,6 @@ main {
   font-weight: normal;
 }
 
-
 /*
   Movies
 */
@@ -135,7 +134,10 @@ main {
   color: white;
 }
 
-.movie-item .movie-item__header .movie-item__header__rating .movie-item__header__rating__score {
+.movie-item
+  .movie-item__header
+  .movie-item__header__rating
+  .movie-item__header__rating__score {
   margin-left: 10px;
 }
 
@@ -181,28 +183,6 @@ main {
 .movie .movie__info h4 {
   margin: 8px 0;
 }
- 
-/*
-  Like
-*/
-.like {
-  width: 55px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #db0000;
-  
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  border-radius: 50%;
-  border: 0;
-  
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-}
 
 /*
   Footer
@@ -212,7 +192,16 @@ footer {
   padding: 16px;
 }
 
+footer #footerTools {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
 footer p {
+  margin-top: 16px;
+
   text-align: center;
   color: #aaaaaa;
 }
@@ -220,4 +209,56 @@ footer p {
 footer p a {
   color: #db0000;
   text-decoration: none;
+}
+
+/*
+  Like
+*/
+
+.like {
+  font-size: 18px;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background-color: #db0000;
+  color: white;
+  border: 0;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+  Button
+*/
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #db0000;
+  border: 1px solid #770000;
+  border-radius: 4px;
+
+  font-weight: 500;
+  font-size: 16px;
+  color: #ffffff;
+
+  cursor: pointer;
+  transition: 0.15s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #db0000bb;
+}
+
+.btn:active {
+  background-color: #db0000dd;
+}
+
+.btn:focus-visible {
+  outline: 3px solid #db000055;
 }

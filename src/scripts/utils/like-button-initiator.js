@@ -1,8 +1,8 @@
+import FavoriteMovieIdb from '../data/favorite-movie-idb';
 import {
   createLikeButtonTemplate,
   createLikedButtonTemplate,
 } from '../views/templates/template-creator';
-import FavoriteMovieIdb from '../data/favorite-movie-idb';
 
 const LikeButtonInitiator = {
   async init({ likeButtonContainer, movie }) {

@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Workbox } from 'workbox-window';
+import * as WorkboxWindow from 'workbox-window';
 
 const swRegister = async () => {
   if (!('serviceWorker' in navigator)) {
@@ -7,8 +6,7 @@ const swRegister = async () => {
     return;
   }
 
-  const wb = new Workbox('./sw.bundle.js');
-
+  const wb = new WorkboxWindow.Workbox('/sw.bundle.js');
   try {
     await wb.register();
     console.log('Service worker registered');

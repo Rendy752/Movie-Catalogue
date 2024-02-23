@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
-import FavoriteMovieSearchPresenter from '../src/scripts/views/pages/liked-movies.js/favorite-movie-search-presenter';
+import FavoriteMovieSearchPresenter from '../src/scripts/views/pages/liked-movies/favorite-movie-search-presenter';
+import FavoriteMovieSearchView from '../src/scripts/views/pages/liked-movies/favorite-movie-search-view';
 
 describe('Searching movies', () => {
   let presenter;
   let favoriteMovies;
+  let view;
 
   const searchMovies = (query) => {
     const queryElement = document.getElementById('query');
@@ -12,15 +14,8 @@ describe('Searching movies', () => {
   };
 
   const setMovieSearchContainer = () => {
-    document.body.innerHTML = `
-      <div id="movie-search-container">
-        <input id="query" type="text">
-        <div class="movie-result-container">
-          <ul class="movies">
-          </ul>
-        </div>
-      </div>
-    `;
+    view = new FavoriteMovieSearchView();
+    document.body.innerHTML = view.getTemplate();
   };
 
   const constructPresenter = () => {
@@ -30,6 +25,7 @@ describe('Searching movies', () => {
     };
     presenter = new FavoriteMovieSearchPresenter({
       favoriteMovies,
+      view,
     });
   };
 
@@ -49,52 +45,6 @@ describe('Searching movies', () => {
       favoriteMovies.searchMovies.mockImplementation(() => []);
       searchMovies('film a');
       expect(favoriteMovies.searchMovies).toHaveBeenCalledWith('film a');
-    });
-
-    it('should show the found movies', () => {
-      presenter._showFoundMovies([{ id: 1 }]);
-      expect(document.querySelectorAll('.movie').length).toEqual(1);
-      presenter._showFoundMovies([
-        {
-          id: 1,
-          title: 'Satu',
-        },
-        {
-          id: 2,
-          title: 'Dua',
-        },
-      ]);
-      expect(document.querySelectorAll('.movie').length).toEqual(2);
-    });
-
-    it('should show the title of the found movies', () => {
-      presenter._showFoundMovies([
-        {
-          id: 1,
-          title: 'Satu',
-        },
-      ]);
-
-      presenter._showFoundMovies([
-        {
-          id: 1,
-          title: 'Satu',
-        },
-        {
-          id: 2,
-          title: 'Dua',
-        },
-      ]);
-      const movieTitles = document.querySelectorAll('.movie__title');
-      expect(movieTitles.item(0).textContent).toEqual('Satu');
-      expect(movieTitles.item(1).textContent).toEqual('Dua');
-    });
-
-    it('should show - for found movie without title', () => {
-      presenter._showFoundMovies([{ id: 1 }]);
-      expect(
-        document.querySelectorAll('.movie__title').item(0).textContent,
-      ).toEqual('-');
     });
 
     it('should show the movies found by Favorite Movies', (done) => {
@@ -150,6 +100,27 @@ describe('Searching movies', () => {
             { id: 222, title: 'ada juga film abcde' },
             { id: 333, title: 'ini juga boleh film a' },
           ];
+        }
+
+        return [];
+      });
+
+      searchMovies('film a');
+    });
+
+    it('should show - when the movie returned does not contain a title', (done) => {
+      document
+        .getElementById('movie-search-container')
+        .addEventListener('movies:searched:updated', () => {
+          const movieTitles = document.querySelectorAll('.movie__title');
+          expect(movieTitles.item(0).textContent).toEqual('-');
+
+          done();
+        });
+
+      favoriteMovies.searchMovies.mockImplementation((query) => {
+        if (query === 'film a') {
+          return [{ id: 444 }];
         }
 
         return [];

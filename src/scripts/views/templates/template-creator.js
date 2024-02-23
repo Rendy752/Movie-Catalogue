@@ -56,9 +56,19 @@ const createUnlikeMovieButtonTemplate = () => `
   </button>
 `;
 
+const createSearchFaviriteMovieTemplate = () => `
+  <div id="movie-search-container">
+    <input id="query" type="text">
+    <div class="movie-result-container">
+        <ul class="movies"></ul>
+    </div>
+  </div>
+`;
+
 export {
   createMovieItemTemplate,
   createMovieDetailTemplate,
   createLikeMovieButtonTemplate,
   createUnlikeMovieButtonTemplate,
+  createSearchFaviriteMovieTemplate,
 };

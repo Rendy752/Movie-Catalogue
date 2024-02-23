@@ -44,13 +44,13 @@ const createMovieItemTemplate = (movie) => `
   </div>
 `;
 
-const createLikeButtonTemplate = () => `
+const createLikeMovieButtonTemplate = () => `
   <button aria-label="like this movie" id="likeButton" class="like">
     <i class="fa fa-heart-o" aria-hidden="true"></i>
   </button>
 `;
 
-const createLikedButtonTemplate = () => `
+const createUnlikeMovieButtonTemplate = () => `
   <button aria-label="unlike this movie" id="likeButton" class="like">
     <i class="fa fa-heart" aria-hidden="true"></i>
   </button>
@@ -59,6 +59,6 @@ const createLikedButtonTemplate = () => `
 export {
   createMovieItemTemplate,
   createMovieDetailTemplate,
-  createLikeButtonTemplate,
-  createLikedButtonTemplate,
+  createLikeMovieButtonTemplate,
+  createUnlikeMovieButtonTemplate,
 };
